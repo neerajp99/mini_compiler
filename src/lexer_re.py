@@ -49,10 +49,5 @@ class Lexer:
                 yield (token_type, token_value)
         yield ('EOF', None)
 
-# Create an error class for the lexer 
-class Error:
-    def __init__(self, error_message):
-        self.error_message = error_message
-
 x = Lexer('3.9 &')
 print(list(x.lexer_generation()))
