@@ -39,7 +39,6 @@ class Lexer:
         regex = '|'.join('(?P<%s>%s)' % (token, self.lexer[token]) for token in self.tokens)
         # Define the tokenizer
         token_regex = re.compile(regex)
-        print(token_regex).findall(self.input_string)
         for m in token_regex.finditer(self.input_string):
             token_type = m.lastgroup
             token_value = m.group()

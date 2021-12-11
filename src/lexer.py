@@ -10,7 +10,7 @@ class Lexer:
         self.PLUS = 'PLUS'
         self.MINUS = 'MINUS'
         self.MUL = 'MUL'
-        self.DIV = 'DIV'
+        self.TT_DIV = 'TT_DIV'
         self.LPAREN = 'LPAREN'
         self.RPAREN = 'RPAREN'
         self.EOF = 'EOF'
@@ -78,7 +78,7 @@ class Lexer:
 
             if self.current_char == '/':
                 self._scan()
-                return Token(self.DIV, '/')
+                return Token(self.TT_DIV, '/')
 
             if self.current_char == '(':
                 self._scan()
@@ -104,6 +104,6 @@ class Token:
             value=repr(self.value)
         )
 
-x = Lexer('2.7 + 3 * (4 + 5)')
-while x.has_token():
-    print(x.get_next_token())
+# x = Lexer('2.7 + 3 * (4 + 5)')
+# while x.has_token():
+#     print(x.get_next_token())
