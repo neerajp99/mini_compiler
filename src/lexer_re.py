@@ -48,5 +48,5 @@ class Lexer:
                 yield (token_type, token_value)
         yield ('EOF', None)
 
-x = Lexer('3.9 &')
+x = Lexer('-3.9 &')
 print(list(x.lexer_generation()))

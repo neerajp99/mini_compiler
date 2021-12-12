@@ -14,7 +14,6 @@ class Parser:
         """Method to utilise the current token and assign the next token to the current token"""
         if self.current_token.token_type == token_type:
             self.current_token = self.lexer.get_next_token()
-            print(self.current_token)
         else:
             self.error()
 
@@ -112,6 +111,6 @@ class UnaryOperator:
         return f'({self.op_token}, {self.right})'
 
 
-x = Parser(lexer.Lexer('+2.8 + 3 * (10 + 10)'))
-y = x.expr()
-print(y)
+# x = Parser(lexer.Lexer('-2.8 + 3 * (10 + 10)'))
+# y = x.expr()
+# print(y)

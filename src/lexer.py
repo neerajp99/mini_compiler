@@ -1,7 +1,10 @@
 import re
 # Create a lexer class for the language
+
+
 class Lexer:
     """Lexer class"""
+
     def __init__(self, text):
         self.text = text
         self.pos = 0
@@ -36,12 +39,12 @@ class Lexer:
         _count = 0
         while self.current_char is not None and self.current_char.isdigit() or self.current_char == '.':
             if self.current_char == '.':
-                if _count == 1: 
-                    break 
-                _count = _count + 1 
+                if _count == 1:
+                    break
+                _count = _count + 1
                 result += '.'
             else:
-                
+
                 result += self.current_char
             self._scan()
         # Check the result is a valid integer
@@ -52,7 +55,7 @@ class Lexer:
                 return Token(self.INTEGER, int(result))
         except ValueError:
             self.error()
-    
+
     def has_token(self):
         return self.current_char is not None
 
@@ -92,18 +95,21 @@ class Lexer:
 
         return Token(self.EOF, None)
 
-# Create the tokens class 
+# Create the tokens class
+
+
 class Token:
     def __init__(self, token_type, value):
         self.token_type = token_type
         self.value = value
-    
+
     def __str__(self):
         return 'Token({type}, {value})'.format(
             type=self.token_type,
             value=repr(self.value)
         )
 
-# x = Lexer('2.7 + 3 * (4 + 5)')
+
+# x = Lexer('-2.8 + 3 * (10 + 19)')
 # while x.has_token():
 #     print(x.get_next_token())
