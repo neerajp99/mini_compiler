@@ -96,38 +96,44 @@ class Interpreter:
 
     def visit_BinOperator(self, node):
         """Visit a binary operator node"""
-        # self.visit(node.left)
-        # self.visit(node.right)
+        # If the operator is a plus, visit the left and right nodes and update the values according to the + sign
         if node.op_token.token_type == 'PLUS':
             value = AddValues(self.visit(
                 node.left), self.visit(node.right))
             op_value = value.evaluate()
             return op_value
+        # If the operator is a minus, visit the left and right nodes and update the values according to the - sign
         elif node.op_token.token_type == 'MINUS':
             value = MinusValues(self.visit(
                 node.left), self.visit(node.right))
             op_value = value.evaluate()
             return op_value
+        # If the operator is a multiplication sign, visit the left and right nodes and update the values according to the * sign
         elif node.op_token.token_type == 'MUL':
             value = MulValues(self.visit(
                 node.left), self.visit(node.right))
             op_value = value.evaluate()
             return op_value
-        elif node.op_token.token_type == 'DIV':
+        # If the operator is a divide sign, visit the left and right nodes and update the values according to the / sign
+        elif node.op_token.token_type == 'TT_DIV':
             value = DivValues(self.visit(
                 node.left), self.visit(node.right))
             op_value = value.evaluate()
             return op_value
         else:
+            # If the operator is not a plus, minus, multiplication or division sign, raise an exception
             raise Exception('No visit_{} method'.format(type(node).__name__))
 
     def visit_UnaryOperator(self, node):
         """Visit a unary operator node and update the signs"""
+        # If the operator is a minus, visit the left node and update the value with a negative sign
         if node.op_token.token_type == 'MINUS':
             return Number(-node.right.value)
+        # If the operator is a plus, visit the left node and do not update the value
         elif node.op_token.token_type == 'PLUS':
             return Number(node.right.value)
         else:
+            # If the operator is not a plus or minus, raise an exception
             raise Exception('No visit_{} method'.format(type(node).__name__))
 
     def visit_Number(self, node):
@@ -138,11 +144,6 @@ class Interpreter:
         """Method to handle nodes that have no visit method"""
         raise Exception('No visit_{} method'.format(type(node).__name__))
 
-    def visit_Program(self, node):
-        """Visit a program node"""
-        for declaration in node.declarations:
-            self.visit(declaration)
 
-
-x = Interpreter(parser.Parser(lexer.Lexer('+2.8 + 3 * (10 + 10)')))
-print(x.interpret())
+# x = Interpreter(parser.Parser(lexer.Lexer('+2.8 + 3 * (10 / 10)')))
+# print(x.interpret())

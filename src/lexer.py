@@ -95,7 +95,12 @@ class Lexer:
 
         return Token(self.EOF, None)
 
-# Create the tokens class
+    def print_tokens(self):
+        """Print all tokens in the input"""
+        while self.has_token():
+            token = self.get_next_token()
+            print(token)
+        return ""
 
 
 class Token:
@@ -111,5 +116,5 @@ class Token:
 
 
 # x = Lexer('-2.8 + 3 * (10 + 19)')
-# while x.has_token():
-#     print(x.get_next_token())
+# x = Lexer('+2.8 + 3 * (10 - 19)')
+# x.print_tokens()

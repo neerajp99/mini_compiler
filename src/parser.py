@@ -83,6 +83,10 @@ class Parser:
 
         return left_node
 
+    def print_ast(self):
+        """Method to print the AST"""
+        return self.expr()
+
 
 class Number:
     def __init__(self, token):
@@ -111,6 +115,7 @@ class UnaryOperator:
         return f'({self.op_token}, {self.right})'
 
 
-# x = Parser(lexer.Lexer('-2.8 + 3 * (10 + 10)'))
-# y = x.expr()
+# x = lexer.Lexer('-2.8 + 3 * (10 + 10)')
+# y = Parser(x)
+# print(y.print_ast())
 # print(y)
