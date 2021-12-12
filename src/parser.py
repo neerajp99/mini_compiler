@@ -38,6 +38,12 @@ class Parser:
                 op_token=token,
                 right=self.factor()
             )
+        elif token.token_type == 'PLUS':
+            self._utilise('PLUS')
+            return UnaryOperator(
+                op_token=token,
+                right=self.factor()
+            )
         else:
             self.error()
 
@@ -106,6 +112,6 @@ class UnaryOperator:
         return f'({self.op_token}, {self.right})'
 
 
-x = Parser(lexer.Lexer('-2.8 + 3 * (10 + 10)'))
+x = Parser(lexer.Lexer('+2.8 + 3 * (10 + 10)'))
 y = x.expr()
 print(y)
